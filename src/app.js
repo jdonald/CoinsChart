@@ -7,14 +7,27 @@ import Chart from './containers/chart';
 import Ranges from './containers/ranges';
 import List from './containers/list';
 
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import reducer from './redux';
+
+const store = createStore(
+  reducer,
+  composeWithDevTools(applyMiddleware(thunk)),
+);
+
 export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Chart />
-        <Ranges />
-        <List />
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <Chart />
+          <Ranges />
+          <List />
+        </View>
+      </Provider>
     );
   }
 }
@@ -25,4 +38,3 @@ const styles = StyleSheet.create({
     paddingTop: 20, // put content below status bar
   },
 });
-
