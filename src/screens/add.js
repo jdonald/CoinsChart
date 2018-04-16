@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import type { Navigation } from '../app';
+import Add from '../containers/add';
 
 export default class extends Component {
 
@@ -30,7 +31,7 @@ export default class extends Component {
             color="#FFFFFF"
           />
         </TouchableOpacity>
-        {/* TODO: Add list here */}
+        <Add onAddedCoin={this.onClose} /> // add this instead of todo
       </View>
     );
   }
